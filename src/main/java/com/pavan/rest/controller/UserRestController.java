@@ -1,8 +1,10 @@
 package com.pavan.rest.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,20 +29,17 @@ public class UserRestController {
 		return userService.getUser(id);
 	}
 
-	@GetMapping(value = "saveUser")
-	public ApiResponse saveUser() {
-		User user = new User();
-		user.setName("pavan");
-		user.setEmail("pavan@gmail.com");
+	@PostMapping(value = "saveUser")
+	public ApiResponse saveUser(User user) {
 		return userService.saveUser(user);
 	}
 
-	@GetMapping(value = "delete/{id}")
+	@DeleteMapping(value = "delete/{id}")
 	public ApiResponse deleteUser(@PathVariable(name = "id") Long id) {
 		return userService.deleteUser(id);
 	}
 
-	@GetMapping(value = "deleteAll")
+	@DeleteMapping(value = "deleteAll")
 	public ApiResponse deleteAllUsers() {
 		return userService.deleteUsers();
 	}
